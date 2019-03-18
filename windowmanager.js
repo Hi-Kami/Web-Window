@@ -28,8 +28,8 @@ window.onload = function()
 
 	//Test create window
 		var TestText = "Potato";
-		TestWindow = new Window( "testwindow", 500, 500, 300, 300, true, "TestWindow", TestText, true, true, true );
-		//TestWindow.RemoveSelf();
+		WindowsManager.CreateNewWindow( "testwindow", 500, 500, 300, 300, true, "TestWindow", TestText, true, true, true );
+		//TestWindow.RemoveWindow("testwindow");
 }
 
 function WindowsManagerClass()
@@ -39,7 +39,7 @@ function WindowsManagerClass()
 	/////////////////
 
 	//Contains the list of current exsisting windows
-		var ListOfActiveWindows = null;
+		var ListOfActiveWindows = new Array();
 
 	   ////////////////
 	  //Methods///////
@@ -59,7 +59,9 @@ function WindowsManagerClass()
 			MaxSizeX = CMaxSizeX, MaxSizeY = CMaxSizeY  //Max size can scale to
 		)
 		{
-
+			//Adds name to list so can access via jQuery and generates window
+			ListOfActiveWindows.push( Name );
+			Window( Name, X, Y, PosX, PosY, Moveable, Title, HTMLData, Minimizable, Closable, Sizeable, MinSizeX, MinSizeY, MaxSizeX, MaxSizeY );
 		}
 
 	//Remove Window base on its name
@@ -80,7 +82,7 @@ function Window
 	HTMLData, //HTML it will contain
 	Minimizable, Closable, Sizeable, //behavor ablities
 	MinSizeX, MinSizeY, //Min size can scale to
-	MaxSizeX, MaxSizeY  //Max size can scale to
+	MaxSizeX, MaxSizeY //Max size can scale to
 )
 {
 	//Name, for tag Id
@@ -108,14 +110,15 @@ function Window
 	//States
 		this.Moveable = Moveable;
 
+
 	//Add window html code
 	{
 		//X button
-			//var CloseCode = "";
-			//if( this.Closable )
-			//{ 
-			//    CloseCode = "<div class = \"crossbutton\" id = \"" + this.Name + "clossbutton\" onclick=\"this.RemoveSelf()\"></div>";
-			//}
+			var CloseCode = "";
+			if( this.Closable )
+			{ 
+			    CloseCode = "<div class = \"crossbutton\" id = \"" + this.Name + "clossbutton\" onclick=\"WindowsManager.RemoveWindow(\"" + this.Name + "\")\"></div>";
+			}
 
 		//_ Button
 			//var MinCode = "";
@@ -215,4 +218,5 @@ function Window
 //ToDo: Max function
 //ToDo: Populate function
 //ToDo: Maybe, make a manager class to manage focus, will have to rengister all windows for this and hanlde creatiion in the manager
+//ToDo: Add paramaters for functions to handle on close and on resize, etc
 }
