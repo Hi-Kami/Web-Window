@@ -66,9 +66,34 @@ function WindowsManagerClass()
 		{
 			for( var i = 0; i < ListOfActiveWindows.length; i++ )
 			{
-				if( Name == ListOfActiveWindows[i] )
+				if( Name == ListOfActiveWindows[i] )//If found a matching name in list turn off handles and remove html container 
 				{
-					jQ( "#" + Name + "style" ).remove();
+					//Remove Event handles in jQ
+						var WindowBody = "#" + this.Name + "style";
+						var WindowHeader = "#" + this.Name + "header";
+
+					//Sizeable
+						jQ
+						(
+							function()
+							{
+								jQ( WindowBody ).resizable( "destroy" );
+							}
+						);
+
+					//Moveable
+						jQ
+						( 
+							function()
+							{
+								jQ( WindowBody ).draggable( "destroy" );
+							}
+						);
+
+					//Remove Item from html and list and break out of loop
+						jQ( "#" + Name + "style" ).remove();
+						ListOfActiveWindows.splice( i, 1 );
+						break;
 				}
 			}
 		}
@@ -206,7 +231,6 @@ function Window
 			}
 
 		//Set Event
-			var WindowBody = "#" + this.Name + "style";
 			jQ
 			(
 				function()
