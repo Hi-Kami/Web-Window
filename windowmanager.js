@@ -12,11 +12,8 @@
 //Resize function
 	var OnResize;
 
-//TestWindow
-	var TestWindow = null;
-
 //Create the windows manager
-	var WindowsManager = WindowsManagerClass();
+	var WindowsManager = new WindowsManagerClass();
 
 window.onload = function()
 {
