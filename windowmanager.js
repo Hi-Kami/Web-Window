@@ -64,7 +64,13 @@ function WindowsManagerClass()
 	//Remove Window base on its name
 		this.RemoveWindow = function( Name )
 		{
-
+			for( var i = 0; i < ListOfActiveWindows.length; i++ )
+			{
+				if( Name == ListOfActiveWindows[i] )
+				{
+					jQ( "#" + Name + "style" ).remove();
+				}
+			}
 		}
 }
 
@@ -114,7 +120,7 @@ function Window
 			var CloseCode = "";
 			if( this.Closable )
 			{ 
-			    CloseCode = "<div class = \"crossbutton\" id = \"" + this.Name + "clossbutton\" onclick=\"WindowsManager.RemoveWindow(\"" + this.Name + "\")\"></div>";
+			    CloseCode = "<div class = \"crossbutton\" id = \"" + this.Name + "clossbutton\" onclick=\"WindowsManager.RemoveWindow(\'" + this.Name + "\');\"></div>";
 			}
 
 		//_ Button
@@ -140,7 +146,7 @@ function Window
 			Title + //Display a title in the title bar                       // |
 
 			//Buttons, if constructed                
-			//CloseCode +
+			CloseCode +
 			//MinCode +
 
 			"</div>" +                                                       // \
