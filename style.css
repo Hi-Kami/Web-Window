@@ -1,0 +1,117 @@
+/*
+	Z Layer key:
+		-1: Background stuff
+		0: Unaltered stuff
+		1: UI things, ie buttons, text, health bars etc
+		2: Windows
+		3: Active Window
+		4: UI Menu
+
+*/
+
+/*Removes padding, margin, etc*/
+.bodyarea
+{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+/*
+/////////////////////////////////////////////////////////////////////
+//Window Style///////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+*/
+
+/*Container for windows*/
+div.windowcontainer
+{
+	/*Make it fixed on the screen*/
+		position: fixed;
+		opacity: 0.85;
+}
+
+/*Window Style*/
+div.windowstyle
+{
+	/*Make it fixed on the screen*/
+		position: fixed;
+
+	/*Make it so it is in front of other UI elements*/
+		z-index: 2; /*Window Layer*/
+
+		background-color: #8c8c8c;
+
+		border-style: solid;
+		border-width: 2px;
+		border-color: #ffffff;
+}
+
+div.windowheaderstyle
+{
+	/*Make it fixed on the window base*/
+		position: relative;
+
+	/*Make it so it is in front of other UI elements*/
+		z-index: 2; /*Window Layer*/
+
+	/*Make text unselectable*/
+		-moz-user-select: -moz-none;
+		   -khtml-user-select: none;
+		   -webkit-user-select: none;
+		-ms-user-select: none;
+		   user-select: none;
+		   
+	/*Curser Style*/
+		cursor: move;
+
+	background-color: #ffb847;
+}
+
+div.windowbodystyle
+{
+	background-color: transparent;
+	border-style: none;
+}
+
+/*Window Buttons*/
+
+/*Cross Button*/
+	div.crossbutton
+	{
+		float: right;
+		/*position: relative;*/
+
+		background-color: #ff0000;
+
+		width: 18px;
+		height: 18px;
+
+		cursor: auto;
+	}	
+
+	div.crossbutton:hovor
+	{
+		background-color: #cccccc;
+	}
+
+/*Min Button*/
+	div.minbutton
+	{
+		float: right;
+		/*position: relative;*/
+
+		background-color: #0000ff;
+
+		width: 18px;
+		height: 18px;
+
+		cursor: auto;
+	}	
+
+	div.minbutton:hovor
+	{
+		background-color: #cccccc;
+	}
